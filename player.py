@@ -36,4 +36,7 @@ for bb1 in bb:
             tocar_nota(int(cc1))
     
 # Executar a aplicação
+# Fechar o dispositivo de saída MIDI ao finalizar a aplicação
+midi_out.close()
+pygame.midi.quit()
 
