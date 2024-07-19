@@ -7,9 +7,10 @@ pygame.midi.init()
 # Selecionar o dispositivo de saída MIDI
 output_id = pygame.midi.get_default_output_id()
 midi_out = pygame.midi.Output(output_id)
-
+notas_midi=[]
 # Definir as notas MIDI para um piano de acordo médio
-notas_midi = [60, 62, 64, 65, 67, 69, 71, 72]  # C4, D4, E4, F4, G4, A4, B4, C5
+for notes in range(20,100,2):
+    notas_midi =  notas_midi + [notes]
 
 def tocar_nota(nota):
     """Função para tocar uma nota MIDI."""
@@ -19,14 +20,20 @@ def tocar_nota(nota):
 # Configurar a janela principal
 root = tk.Tk()
 root.title("Piano MIDI")
-root.geometry("600x200")
+root.geometry("600x480")
 root.configure(bg="white")
 
 # Criar botões para cada nota
+iii=0
+ii=0
+i1=0
 for i, nota in enumerate(notas_midi):
     btn = tk.Button(root, text=f"Nota {nota}", command=lambda nota=nota: tocar_nota(nota))
-    btn.grid(row=0, column=i, padx=5, pady=5)
-
+    btn.grid(row=ii, column=iii, padx=5, pady=5)
+    iii=iii+1
+    if iii> 7:
+        iii=0
+        ii=ii+1
 # Executar a aplicação
 root.mainloop()
 
